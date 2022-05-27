@@ -1,16 +1,24 @@
 require('dotenv').config()
 
+
 console.log(process.env.DATABASE_URL)
+const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5000;
+const prisma = new PrismaClient()
 
+const port = process.env.PORT || 5000;
 app.get('/', (req, res) => {
     res.json({ message: 'alive' });
 });
 
-app.get('/posts', (req, res) => {
-
+app.get('/posts', async (req, res) => {
+    try {
+        const posts = await prisma.post.findMany();
+        res.status(200).send({ posts })
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 app.listen(port, () => {
