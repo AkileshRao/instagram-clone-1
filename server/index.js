@@ -5,9 +5,13 @@ console.log(process.env.DATABASE_URL)
 const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const app = express();
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
+const cors = require('cors')
 
 const port = process.env.PORT || 5000;
+
+app.use(cors());
+
 app.get('/', (req, res) => {
     res.json({ message: 'alive' });
 });
