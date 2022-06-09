@@ -10,7 +10,7 @@ const Explore = () => {
   }, [])
 
   return (
-    <div>Explore</div>
+    <div>Explore component is working!</div>
   )
 
 }
