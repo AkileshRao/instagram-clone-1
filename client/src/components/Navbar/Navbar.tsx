@@ -1,16 +1,19 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import { GrHomeRounded, GrLogout } from "react-icons/gr";
+import { AiOutlineCompass } from "react-icons/ai";
 
 function Navbar() {
   return (
     <>
-    <nav className='h-11 flex items-center border-b-4 border-t-4 px-64'>
+    <nav className='h-16 flex items-center border-b-4 px-64 navbar bg-black'>
         <div className='flex w-full'>
             <div className='grow'>
-                Brand
+                <img src={'/assets/images/logo1.png'} alt="Instagram" className="logo"/>
             </div>
-            <div className='flex gap-4'>
-                <Link to="dashboard">Dashboard</Link>
-                <Link to="explore">Explore</Link>
+            
+            <div className='flex items-center flex-row gap-4'>
+                <Link to="dashboard"><GrHomeRounded className='navbar_icons' /></Link>
+                <Link to="explore"><AiOutlineCompass className='navbar_icons'/></Link>
             </div>
         </div>
     </nav>

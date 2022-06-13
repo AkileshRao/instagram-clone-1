@@ -12,7 +12,7 @@ const App = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="*" element={<p>Bhag BSDK!</p>} />
+          <Route path="*" element={<p>Page not found!</p>} />
         </Routes>
       </div>  
     </BrowserRouter>
