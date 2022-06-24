@@ -1,21 +1,16 @@
-import { BrowserRouter, Link, Route, Router, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import Dashboard from './pages/Dashboard/Dashboard';
-import Explore from './pages/Explore/Explore';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Login from './pages/Login/Login';
+import { AuthProvider } from './state/Auth.context';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-      <Navbar/>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="*" element={<p>Bhag BSDK!</p>} />
-        </Routes>
-      </div>  
-    </BrowserRouter>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to={"/login"} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='*' element={<Navigate to={"/login"} />} />
+      </Routes>
+    </AuthProvider>
   )
 }
 
