@@ -5,13 +5,15 @@ import { AiOutlineCompass } from "react-icons/ai";
 function Navbar() {
   return (
     <>
-    <nav className='h-16 flex items-center border-b-4 px-64 navbar bg-black'>
-        <div className='flex w-full'>
-            <div className='grow'>
-                <img src={'/assets/images/logo1.png'} alt="Instagram" className="logo"/>
+    <nav className='h-16 flex items-center border-b-4 navbar bg-black '>
+        <div className='flex w-full justify-center'>
+            <div className=''>
+                {/* <img src={'/assets/images/logo1.png'} alt="InstaHub" className="logo"/> */}
             </div>
-            
-            <div className='flex items-center flex-row gap-4'>
+            <div>
+              <input type="text" name="search" />
+            </div>
+            <div className='flex items-center flex-row gap-4 text-white	'>
                 <Link to="dashboard"><GrHomeRounded className='navbar_icons' /></Link>
                 <Link to="explore"><AiOutlineCompass className='navbar_icons'/></Link>
             </div>

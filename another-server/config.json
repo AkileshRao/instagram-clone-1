@@ -1,0 +1,7 @@
+{
+    "development": {
+        "NODE_ENV": "development",
+        "PORT": 3000,
+        "DATABASE": "mongodb://127.0.0.1:27017/instagram-clone-1"
+    }
+}
