@@ -15,25 +15,13 @@ const App = () => {
   // }
 
   return (
-<<<<<<< HEAD
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Navigate to={"/login"} />} />
+        {/* <Route path="/" element={<Navigate to={"/login"} />} />
         <Route path="/login" element={<Login />} />
-        <Route path='*' element={<Navigate to={"/login"} />} />
+        <Route path='*' element={<Navigate to={"/login"} />} /> */}
       </Routes>
     </AuthProvider>
-=======
-    <>
-      <Navbar/>
-      <Routes>
-        {/* <Route path='/' element={<Login />} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="*" element={<p>Page not found!</p>} />
-      </Routes>
-    </>
->>>>>>> ff344f78e6c34b451dafbf4d5ce03e8d6cf67313
   )
 }
 
