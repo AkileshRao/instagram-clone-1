@@ -1,19 +1,22 @@
 const userModel = require('../models/user');
-const mongoose =require ("mongoose");
 
 exports.createUser = async (req,res) => {
     console.log('req.....',req.body);
-    const user = await userModel.create(req.body)
-    console.log('user',user);
-    // if(!user) {
-    //     return res.status(400).send({
-    //         message: "Error encountered while creating a user",
-    //         success: false
-    //     })
-    // }
-
-    // return res.status(200).send({
-    //     message: "User created",
-    //     status: true
-    // })
+    try {
+        const user = await userModel.create(req.body)
+        console.log('user',user);
+        res.status(200).json({
+            isError: false,
+            data: user
+        })
+    }
+    catch(error) {
+        console.log('error.error',error.errors);
+        console.log('error.message',error._message)
+        res.send({
+            isError: true,
+            error: error.error,
+            message: error.message
+        })
+    }
 }
