@@ -15,5 +15,4 @@ model User {
   email         String? @unique
   username      String  @unique
   hashedPass    String  @unique
-  hashedPdasass String  @unique
 }

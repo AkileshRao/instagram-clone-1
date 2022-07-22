@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import ImagesGrid from '../../components/ImagesGrid/ImagesGrid';
 import { fetchPosts } from '../../services/PostService';
 
 const Explore = () => {
+  const [posts, setPosts] = useState<any[]>([]);
 
-  useEffect(() => {
-    fetchPosts().then((res)=>{
-      console.error('res',res);
-    }).catch(error => console.log(error));
+  useEffect( () => {
+    getPosts();
   }, [])
 
+  const getPosts = async () => {
+    const postsFromResponse: any = await fetchPosts();
+    setPosts([postsFromResponse.data.posts]);
+  };
+
   return (
-    <div>Explore component is working!</div>
+    <div className='grid grid-cols-3 gap-4'>
+       <ImagesGrid posts={posts} />
+    </div>
   )
 
 }

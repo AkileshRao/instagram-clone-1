@@ -3,16 +3,35 @@
 @tailwind utilities;
 
 .navbar {
-    /* background-color: rgb(255,255,255); */
     border-bottom: 1px solid rgb(219,219,219);
 }
 
 .logo {
     width: 250px;
-    height: 180px;
 }
 
 .navbar_icons {
     width: 20px;
     height: 20px;
+    color: #FFFFFF;
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+    @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
+
+.form-control {
+    @apply 
+    block
+    w-full
+    px-3
+    py-1.5
+    mt-2.5
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
 }

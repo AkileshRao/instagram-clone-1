@@ -25,6 +25,13 @@ app.get('/posts', async (req, res) => {
     }
 })
 
+app.post('/login', (req, res) => {
+    console.error('req',req.body);
+    res.send({
+      token: 'test123'
+    });
+  });
+
 app.listen(port, () => {
     console.log(`Listening to requests on port ${port}`);
 });

@@ -1,11 +1,9 @@
-import axios from "axios";
+import axiosInstance from '../utils/axios'
 
-const baseURL = 'http://localhost:5000/';
-
-export const fetchPosts = async ()=> {
+export const fetchPosts = async () => {
   try {
-    const response = await axios.get(`${baseURL}posts`);
-    return response.data;
+    console.log('Post service');
+    return await axiosInstance.get(`posts`);
   } catch (error) {
     return error;
   }
