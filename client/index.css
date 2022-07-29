@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    font-family: "Inter";
+}
+
+* {
+    outline: none;
+}
+
 .navbar {
-    border-bottom: 1px solid rgb(219,219,219);
+    border-bottom: 1px solid rgb(219, 219, 219);
 }
 
 .logo {
@@ -17,21 +26,17 @@
 }
 
 .btn {
-    @apply font-bold py-2 px-4 rounded;
+    /* @apply font-bold py-2 px-4 rounded; */
 }
+
 .btn-blue {
-    @apply bg-blue-500 text-white;
+    /* @apply bg-blue-500 text-white; */
 }
+
 .btn-blue:hover {
-    @apply bg-blue-700;
+    /* @apply bg-blue-700; */
 }
 
 .form-control {
-    @apply 
-    block
-    w-full
-    px-3
-    py-1.5
-    mt-2.5
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+    /* @apply block w-full px-3 py-1.5 mt-2.5 focus: text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none */
 }
