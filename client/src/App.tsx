@@ -13,7 +13,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Routes>
-        { true && <Route path="/" element={<Login />} />}
+        <Route path="/" element={<Login />} />
         <Route path="login" element={<Login />} />
         <Route path="main" element={<Main />} >
           <Route></Route>

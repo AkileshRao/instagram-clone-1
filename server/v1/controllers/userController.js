@@ -1,19 +1,61 @@
-const userModel = require('../models/user');
-const mongoose =require ("mongoose");
+const db = require('../models');
+const User = db.users;
+const Op = db.Sequelize.Op;
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
-exports.createUser = async (req,res) => {
-    console.log('req.....',req.body);
-    const user = await userModel.create(req.body)
-    console.log('user',user);
-    // if(!user) {
-    //     return res.status(400).send({
-    //         message: "Error encountered while creating a user",
-    //         success: false
-    //     })
-    // }
+exports.createUser = async (req, res) => {
+    if (!req.body.username) res.status(400).json({ status: "error", message: "Cannot have empty username" })
+    if (!req.body.password) res.status(400).json({ status: "error", message: "Cannot have empty password" })
+    if (!req.body.email) res.status(400).json({ status: "error", message: "Cannot have empty email" })
 
-    // return res.status(200).send({
-    //     message: "User created",
-    //     status: true
-    // })
+    const user = {
+        username: req.body.username,
+        email: req.body.email,
+        password: await hashPassword(req.body.password),
+        dob: req.body.dob,
+    }
+
+    User.create(user).then(data => {
+        res.status(200).json({
+            status: "success",
+            message: "User created successfully!"
+        })
+    }).catch(err => {
+        res.status(400).json({
+            status: "error",
+            message: "Something went wrong!",
+            error: err
+        })
+    })
+}
+
+
+exports.signIn = async (req, res) => {
+    if (!req.body.username) res.status(400).json({ status: "error", message: "Cannot have empty username" })
+    if (!req.body.password) res.status(400).json({ status: "error", message: "Cannot have empty password" })
+
+    const user = await User.findOne({ where: { username: req.body.username } })
+
+    const passwordResult = await bcrypt.compare(req.body.password, user.password)
+
+    if (!passwordResult) res.status(400).json({ status: "error", message: "Invalid password!" })
+
+    const userPayload = {
+        username: req.body.username,
+        currentTime: new Date()
+    }
+
+    const token = await jwt.sign(userPayload, 'bsdk');
+
+    res.status(200).json({
+        status: "success",
+        token: token
+    })
+}
+
+
+const hashPassword = async (passwordString) => {
+    const hashedP = await bcrypt.hash(passwordString, 10)
+    return hashedP
 }
