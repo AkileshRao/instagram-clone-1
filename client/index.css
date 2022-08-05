@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: "Inter";
+}
+
+* {
+    outline: none;
+}
+
+.navbar {
+    border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.logo {
+    width: 250px;
+}
+
+.navbar_icons {
+    width: 20px;
+    height: 20px;
+    color: #FFFFFF;
+}
+
+.input {
+    @apply p-2 indent-1 rounded-md w-full bg-slate-100 border-0 transition-all duration-300 ease-in-out focus:border-blue-300
+}
+
+.button {
+    @apply p-2 bg-blue-500 text-white font-bold w-full rounded
+}
+
+/* .background {
+    background-image: url("assets/images/philipp-trubchenko-y0RTv-XuZFo-unsplash.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+} */
+
+/* .overlay {
+
+} */
