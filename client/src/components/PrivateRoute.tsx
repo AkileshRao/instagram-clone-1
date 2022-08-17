@@ -1,16 +1,14 @@
-import React, { useContext, useEffect } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import Navbar from './Navbar/Navbar'
 
 const useAuth = () => {
-    const user = localStorage.getItem('user')
-    if (user) { return true }
+    const token = localStorage.getItem('token')
+    if (token) { return true }
     else { return false }
 }
 
 const PrivateRoutes = ({ children }: any) => {
     const auth = useAuth()
-    return auth ? children : <Navigate to="/login" />
+    return auth ? <Outlet /> : <Navigate to="/login" replace/>
 }
 
 export default PrivateRoutes;

@@ -1,6 +1,7 @@
 {
     "development": {
         "NODE_ENV": "development",
-        "PORT": 3001
+        "PORT": 3001,
+        "SECRET": "bsdk"
     }
 }

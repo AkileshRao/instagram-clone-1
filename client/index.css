@@ -32,13 +32,3 @@
 .button {
     @apply p-2 bg-blue-500 text-white font-bold w-full rounded
 }
-
-/* .background {
-    background-image: url("assets/images/philipp-trubchenko-y0RTv-XuZFo-unsplash.jpg");
-    background-position: center;
-    background-size: 100% 100%;
-} */
-
-/* .overlay {
-
-} */

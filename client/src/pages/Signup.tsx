@@ -18,15 +18,16 @@ export default function Signup() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } : any = useForm();
   const { signUp } = useContext(AuthContext);
+  const [isLoading, setLoading] = useState(false)
 
   const handleClick = () => { setShow(!show); }
 
   const onSubmit = (newUser: any) => {
     console.log(newUser);
     console.log('errors',errors);
-    
+    setLoading(true);
     signUp(newUser).then((res)=>{
       console.error('res',res);
       if(res){
@@ -39,18 +40,20 @@ export default function Signup() {
           isClosable: true
         });
         reset();
+        setLoading(false);
         navigate('/login');
       }
     }).catch((err)=>{
       console.error(err)
       toast({
         title: 'Error!',
-        description: err.response.data.error.errors[0].message,
+        description: err.response.data.error.errors[0].message || 'Something went wrong!',
         position: 'top-right',
         status: "error",
         duration: 5000,
         isClosable: true
       });
+      setLoading(false);
     });
   }
 
@@ -77,15 +80,15 @@ export default function Signup() {
         <h1 className='text-2xl font-bold'>Sign Up</h1>
         <FormControl className="w-full">
           <Input type='email' className="" placeholder="Email" {...register("email", registerOptions.email)}/>
-           {errors?.email && errors.email.message}
+           {errors?.email && (<span className='text-red-500'>{errors?.email?.message}</span>)}
         </FormControl>
         <FormControl className="w-full">
           <Input type='text' className="" placeholder="Fullname" {...register("name", registerOptions.name)}/>
-          {errors?.name && errors.name.message}
+          {errors?.name && (<span className='text-red-500'>{errors?.name?.message}</span>)}
         </FormControl>
         <FormControl className="w-full">
           <Input type='text' className="" placeholder="Username" {...register("username", registerOptions.username)}/>
-          {errors?.username && errors.username.message}
+          {errors?.username && (<span className='text-red-500'>{errors?.username?.message}</span>)}
         </FormControl>
         <InputGroup size='md'>
           <Input pr='4.5rem' type={show ? 'text' : 'password'} placeholder='Password'
@@ -96,7 +99,7 @@ export default function Signup() {
               {show ? 'Hide' : 'Show'}
             </Button>
           </InputRightElement>
-          {errors?.password && errors.password.message}
+          {/* {errors?.password && (<span className='text-red-500'>errors.password.message</span>)} */}
         </InputGroup>
         <Button type="submit" colorScheme='blue' className="w-full">Sign Up</Button>
       </form>

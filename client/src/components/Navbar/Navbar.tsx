@@ -1,26 +1,17 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
-import { GrHomeRounded, GrLogout } from "react-icons/gr";
-import { AiOutlineCompass } from "react-icons/ai";
-
-function Navbar() {
+const Navbar = () => {
   return (
-    <>
-    <nav className='h-16 flex items-center border-b-4 navbar bg-black '>
-        <div className='flex w-full justify-center'>
-            <div className=''>
-                {/* <img src={'/assets/images/logo1.png'} alt="InstaHub" className="logo"/> */}
-            </div>
-            <div>
-              <input type="text" name="search" />
-            </div>
-            <div className='flex items-center flex-row gap-4 text-white	'>
-                <Link to="dashboard"><GrHomeRounded className='navbar_icons' /></Link>
-                <Link to="explore"><AiOutlineCompass className='navbar_icons'/></Link>
-            </div>
+    <nav
+      className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light"
+    >
+      <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+        <div className="flex-grow items-center">
+          <a href="#" className="text-xl text-white pr-2 font-semibold">
+            Navbar
+          </a>
         </div>
+      </div>
     </nav>
-    <Outlet />  
-    </>
+
   )
 }
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const userRouter = require('./v1/routes/userRouter');
 const cors = require('cors');
 const path = require('path');
 const db = require("./v1/models")
+const userRouter = require('./v1/routes/userRouter');
+const postRouter = require('./v1/routes/postRoutes');
 
 
 //Everytime the server restarts, this block will tally models
@@ -20,7 +21,8 @@ app.use(cors({ origin: '*' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use('/api/v1/users', userRouter)
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/posts', postRouter);
 
 //Add token middleware
 // app.use('/api/v1/posts', middleWare, postsRouter)

@@ -12,8 +12,7 @@ exports.createUser = async (req, res) => {
     const user = {
         username: req.body.username,
         email: req.body.email,
-        password: await hashPassword(req.body.password),
-        dob: req.body.dob,
+        password: req.body.password,
     }
     console.log('user',user)
     User.create(user).then(() => {
@@ -26,7 +25,6 @@ exports.createUser = async (req, res) => {
             isError: false
         })
     }).catch(err => {
-        console.log('------------------------------------',err)
         res.status(400).json({
             status: "error",
             message: "Something went wrong!",
@@ -52,16 +50,12 @@ exports.signIn = async (req, res) => {
         currentTime: new Date()
     }
 
-    const token = await jwt.sign(userPayload, 'bsdk');
+    const token = await jwt.sign(userPayload, process.env.SECRET, {
+        expiresIn: 86400 // expires in 24 hours
+      });
 
     res.status(200).json({
         status: "success",
         token: token
     })
-}
-
-
-const hashPassword = async (passwordString) => {
-    const hashedP = await bcrypt.hash(passwordString, 10)
-    return hashedP
 }
